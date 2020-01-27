@@ -14,7 +14,6 @@ User.deleteMany({}).then(() => {
     // create a user
     User.create({
         name: "Muhamamd Khan",
-        likes: 11,
         description: "My likings",
 
     })
@@ -24,8 +23,11 @@ User.deleteMany({}).then(() => {
        url: "Breakfast.com",
         title: "Breakfast",
         info: "Brooklyn Avn",
+        likes: 11,
         userid: paul.id
       })
+
+
       // create comment
       .then(comts => {
         Comment.create({
@@ -34,17 +36,24 @@ User.deleteMany({}).then(() => {
         posts: comts.id
       })
     })
+
+    .then(ms => {
+      paul.mylikes.push(ms)
+      paul.save()
+      console.log('created Paul:Microsoft')
+    })
+    
       // create the posts
       Post.create({
         url: "Lunch.com",
         title: "Lunch menu",
         info: "City Area",
+       likes:22,
         userid: paul.id
       })
-
       // create comment
-     
-      .then(comts => {
+
+         .then(comts => {
         Comment.create({
         body: "Excellent Picture ",
         users: paul.id,
@@ -52,7 +61,8 @@ User.deleteMany({}).then(() => {
       })
     })
 })
-   //
+   
 })
       })
     })
+    console.log ('Successful .................')
