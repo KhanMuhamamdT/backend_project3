@@ -1,6 +1,6 @@
 const mongoose = require("../db/connection");
 const UserSchema = mongoose.Schema({
-  empID : String,
+  userID : String,
   name: String,
   description: String,
   mylikes: [

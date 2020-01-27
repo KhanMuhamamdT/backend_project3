@@ -1,17 +1,22 @@
 const express = require("express")
 const router = express.Router()
-const user = require("../models/User");
+const User = require("../models/User");
 
-// Creating User
+// this is the default route for returning all the records 
+router.get("/", (req, res) => {
+    User.find({}).then(users => res.json(users));
+})
+
+// Getting User information 
 router.get("/:userID", (req, res) => {
-      user.find({ empID: req.params.empID }).then(users =>
+      User.find({ userID: req.params.userID }).then(users =>
       res.json(users)
     );
   });
 // Deleteing User 
 router.delete("/:userID", (req, res) => {
     let userID = req.params.userID
-    user.findOneAndDelete({userID})
+    User.findOneAndDelete({userID})
     .then(users => res.json(users));
   });
 
@@ -19,13 +24,13 @@ router.delete("/:userID", (req, res) => {
 router.put("/:userID", (req, res) => {
     let userData = req.body
     let userID = req.params.userID
-    user.findOneAndUpdate({userID}, userData, { new: true})
+    User.findOneAndUpdate({userID}, userData, { new: true})
       .then(users => res.json(users));
   });
 //    Insertion  the record
     router.post("/", (req, res) => {
         console.log("Creation of record .........")
-        user.create(req.body).then(users => res.json(users));
+        User.create(req.body).then(users => res.json(users));
        });
      module.exports = router
 
