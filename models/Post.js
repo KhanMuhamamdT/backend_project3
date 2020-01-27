@@ -3,6 +3,7 @@ const postSchema = mongoose.Schema({
   url: String,
   title: String,
   info: String,
+  likes: Number,
   userid: 
     {
       ref: "User",

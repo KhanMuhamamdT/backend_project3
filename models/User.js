@@ -1,8 +1,14 @@
 const mongoose = require("../db/connection");
 const UserSchema = mongoose.Schema({
   name: String,
-  likes: Number,
-  description: String
+  description: String,
+  mylikes: [
+    {
+      ref: "Post",
+      type: mongoose.Schema.Types.ObjectId
+    }
+  ]
+  
 //   postid: [
 //     {
 //       ref: "Post",
