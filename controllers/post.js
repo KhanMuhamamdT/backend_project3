@@ -42,4 +42,5 @@ router.delete("/:name", (req, res) => {
         res.json(Post);
     });
 });
+module.exports = router
 
