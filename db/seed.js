@@ -13,7 +13,8 @@ User.deleteMany({}).then(() => {
         console.log('deleted all Comment')
     // create a user
     User.create({
-        name: "Muhamamd Khan",
+       empID : "MK", 
+       name: "Muhamamd Khan",
         description: "My likings",
 
     })
@@ -51,6 +52,9 @@ User.deleteMany({}).then(() => {
        likes:22,
         userid: paul.id
       })
+
+
+      
       // create comment
 
          .then(comts => {
