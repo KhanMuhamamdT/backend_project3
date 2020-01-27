@@ -1,6 +1,6 @@
 const express = require("express")
 const router = express.Router()
-const Comment = require("../models/User");
+const Comment = require("../models/Comment");
 
 // this is the default route for returning all the records 
 router.get("/", (req, res) => {

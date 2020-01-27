@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const express = require('express');
+const router = express.Router()
 
 const Post = require('../models/Post');
 
@@ -31,7 +32,7 @@ router.post("/", (req, res) => {
 
 //findby user using post-author
 router.get("/:name/posts", (req, res) => {
-    Post.find({ userid: req.params.name });
+    Post.find({ userid: req.params.name })
     .then(Post => res.json(Post));
 });
 
