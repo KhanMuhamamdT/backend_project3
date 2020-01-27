@@ -1,38 +1,45 @@
 const mongoose = require('mongoose');
 const express = require('express');
 
-const user = require('../models/Post');
+const Post = require('../models/Post');
 
 //get a list of all trainers
 router.get("/", (req, res) => {
-    user.find({})
-    .then(allUsers => res.json(allUsers));
+    Post.find({})
+    .then(allPosts => res.json(allPosts));
 })
 
-//get a specific trainer by name
-router.get("/:name", (req, res) => {
-    User.find({ name: req.params.name })
-    .then(User => res.json(User))
+// get post by name
+router.get("/:title", (req, res) => {
+    Post.find({ title: req.params.name })
+    .then(Post => res.json(Post))
 })
 
-//modify a specific trainer by name
+// update a post
 router.put("/:name", (req, res) => {
-    User.findOneAndUpdate({ name: req.params.name }, req.body, {
+    Post.findOneAndUpdate({ title: req.params.name }, req.body, {
         new: true
-    }).then(User => res.json(User));
+    }).then(Post => res.json(Post));
 });
 
-//create a new trainer
+// create a post
 router.post("/", (req, res) => {
-    const newUser = req.body;
-    User.create(req.body)
-    .then(User => res.json(User));
+    const newPost = req.body;
+    Post.create(req.body)
+    .then(Post => res.json(Post));
 });
 
-//delete a trainer
+//findby user using post-author
+router.get("/:name/posts", (req, res) => {
+    Post.find({ userid: req.params.name });
+    .then(Post => res.json(Post));
+});
+
+//delete a post
 router.delete("/:name", (req, res) => {
     User.findOneAndDelete({ name: req.params.name })
-    .then(User => {
-        res.json(User);
+    .then(Post => {
+        res.json(Post);
     });
 });
+

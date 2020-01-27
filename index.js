@@ -1,7 +1,7 @@
 const express = require('express');
 const app = express();
-const userController = require('./controllers/User');
-const postController = require('./controllers/Post');
+const userController = require('./controllers/user');
+const postController = require('./controllers/post');
 const commentController = require('Comment');
 
 app.get('/', (req, res) => {
@@ -17,14 +17,14 @@ app.use('/api/users', usersController);
 
 //posts controller
 app.get('/api/posts', (req, res) => {
-    res.redirect(/api/users);
+    res.redirect(/api/posts);
 });
 app.use('/api/posts', postsController);
 
 //comments controller
 app.get('/api/comments', (req, res) => {
-    res.redirect(/api/users);
+    res.redirect(/api/comments);
 });
 app.use('api/comments', commentsController)
 
-app.listen(3000, () => console.log("Running on port 3000!"));
+app.listen(8080, () => console.log("Running on port 8080!"));
