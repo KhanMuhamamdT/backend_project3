@@ -10,7 +10,8 @@ const UserSchema = mongoose.Schema({
       type: mongoose.Schema.Types.ObjectId
     }
   ]
-  
+// likes as models? likes = collection of users who have liked the post.
+
 //   postid: [
 //     {
 //       ref: "Post",
