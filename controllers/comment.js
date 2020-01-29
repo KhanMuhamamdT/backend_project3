@@ -1,12 +1,12 @@
 const express = require("express")
 const router = express.Router()
 const Comment = require("../models/Comment");
-
 // this is the default route for returning all the records 
+console.log('Comment controller')
 router.get("/", (req, res) => {
-    Comment.find({}).then(comments => res.json(comments));
+  console.log ('comments path')  
+  Comment.find({}).then(comments => res.json(comments));
 })
-
 // Getting comments information 
 router.get("/:comment", (req, res) => {
       Comment.find({ posts: req.params.comment }).then(posts =>

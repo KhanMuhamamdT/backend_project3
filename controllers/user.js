@@ -7,7 +7,6 @@ router.get("/", (req, res) => {
   console.log( 'default path get') 
   User.find({}).then(users => res.json(users));
 })
-
 // Getting User information 
 // "Test case">> "http://localhost:8080/api/users/MK"
 router.get("/:userID", (req, res) => {
@@ -27,18 +26,13 @@ router.delete("/:userID", (req, res) => {
 
 // Updating User 
 router.put("/:userID", (req, res) => {
-// update call  
-   console.log('update call')
-    //let userData = req.body
-    // User.findOneAndUpdate({userID}, userData, { new: true})
-    //   .then(users => res.json(users));
-    User.findOneAndUpdate({ userID: req.params.userID }, req.body, {
-      new: true
-  }).then(Post => res.json(Post));
- 
+ let userdata = req.body
+ let userID = req.params.userID
+User.findOneAndUpdate({userID}, userdata, { new: true})
+   .then(users => res.json(users));
     });
 //    Insertion  the record
-    router.post("/", (req, res) => {
+router.post("/", (req, res) => {
         console.log("Creation of record .........")
         User.create(req.body).then(users => res.json(users));
        });
