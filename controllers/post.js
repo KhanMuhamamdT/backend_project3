@@ -4,7 +4,6 @@ const router = express.Router()
 
 const Post = require('../models/Post');
 
-//get a list of all trainers
 router.get("/", (req, res) => {
     Post.find({})
     .then(allPosts => res.json(allPosts));
@@ -12,13 +11,13 @@ router.get("/", (req, res) => {
 
 // get post by name
 router.get("/:title", (req, res) => {
-    Post.find({ title: req.params.name })
+    Post.find({ title: req.params.title })
     .then(Post => res.json(Post))
 })
 
 // update a post
-router.put("/:name", (req, res) => {
-    Post.findOneAndUpdate({ title: req.params.name }, req.body, {
+router.put("/:title", (req, res) => {
+    Post.findOneAndUpdate({ title: req.params.title }, req.body, {
         new: true
     }).then(Post => res.json(Post));
 });

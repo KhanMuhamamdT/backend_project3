@@ -4,6 +4,12 @@ const postSchema = mongoose.Schema({
   title: String,
   info: String,
   likes: Number,
+  comments: [
+    {
+      ref: "Comment",
+      type: mongoose.Schema.Types.ObjectId
+    }
+  ],
   userid: 
     {
       ref: "User",
