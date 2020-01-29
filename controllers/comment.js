@@ -16,14 +16,14 @@ router.get("/:comment", (req, res) => {
 // Deleteing cooments 
 router.delete("/:comment", (req, res) => {
     let posts = req.params.comment
-    Comment.findOneAndDelete({postID})
+    Comment.findOneAndDelete({posts: req.params.comment})
     .then(comments => res.json(comments));
   });
 
 // Updating comment 
 router.put("/:comment", (req, res) => {
     let userData = req.body
-    let posts = req.params.userID
+    let posts = req.params.comment
     Comment.findOneAndUpdate({posts}, userData, { new: true})
       .then(comments => res.json(comments));
   });
