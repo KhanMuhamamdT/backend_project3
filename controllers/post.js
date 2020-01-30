@@ -25,13 +25,15 @@ router.put("/:postID", (req, res) => {
 });
 
 // create a post
-// ALDO: changed and tested. Now also updates user with new post
+// ALDO: changed and tested. Now it also updates user db with this post's id.
 router.post("/", (req, res) => {
   //   Post.create(req.body).then(post => res.json(post));
   Post.create(req.body).then(post => {
     User.find({ _id: post.userid }).then(user => {
-      user.myPosts.push(post._id);
-      user.save();
+      // ALDO: 'user' comes out as an array...
+      console.log(user[0]);
+      user[0].myPosts.push(post._id);
+      user[0].save();
     });
     res.json(post);
   });
