@@ -36,12 +36,6 @@ User.deleteMany({}).then(() => {
             });
           })
 
-          .then(ms => {
-            paul.mylikes.push(ms);
-            paul.save();
-            console.log("created Paul:Microsoft");
-          });
-
         // create the posts
         Post.create({
           url: "Lunch.com",
