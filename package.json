@@ -4,7 +4,8 @@
   "description": "Not Pinterest",
   "main": "index.js",
   "scripts": {
-    "test": "mocha test/users.test.js"
+    "test": "mocha test/users.test.js",
+    "start": "node index.js"
   },
   "repository": {
     "type": "git",

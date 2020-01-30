@@ -27,4 +27,8 @@ app.use('/api/posts', postsController);
 //comments controller
 app.use('/api/comments', commentsController)
 
-app.listen(8080, () => console.log("Running on port 8080!"));
+app.set("port", process.env.PORT || 8080);
+
+app.listen(app.get("port"), () => {
+  console.log(`✅ PORT: ${app.get("port")} 🌟`);
+});
