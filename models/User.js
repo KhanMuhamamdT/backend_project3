@@ -1,24 +1,30 @@
 const mongoose = require("../db/connection");
 const UserSchema = mongoose.Schema({
-  userID : String,
+  userID: String,
   name: String,
   description: String,
-  mylikes: [
+  profilePicURL: String,
+  // ALDO: changed mylikes and re-used as myPosts
+  myPosts: [
     {
-      
       ref: "Post",
       type: mongoose.Schema.Types.ObjectId
     }
   ]
-// likes as models? likes = collection of users who have liked the post.
+  // mylikes: [
+  //   {
+  //     ref: "Post",
+  //     type: mongoose.Schema.Types.ObjectId
+  //   }
+  // ]
+  // likes as models? likes = collection of users who have liked the post.
 
-//   postid: [
-//     {
-//       ref: "Post",
-//       type: mongoose.Schema.Types.ObjectId
-//     }
-//   ]
-
+  //   postid: [
+  //     {
+  //       ref: "Post",
+  //       type: mongoose.Schema.Types.ObjectId
+  //     }
+  //   ]
 });
 const User = mongoose.model("User", UserSchema);
 module.exports = User;
