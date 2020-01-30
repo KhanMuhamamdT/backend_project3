@@ -3,8 +3,9 @@ const express = require("express");
 const router = express.Router();
 
 const Post = require("../models/Post");
+const User = require("../models/User");
 
-//get a list of all trainers
+//get a list of all posts
 router.get("/", (req, res) => {
   Post.find({}).then(allPosts => res.json(allPosts));
 });
@@ -24,19 +25,29 @@ router.put("/:postID", (req, res) => {
 });
 
 // create a post
+// ALDO: changed and tested. Now also updates user with new post
 router.post("/", (req, res) => {
-  Post.create(req.body).then(post => res.json(post));
+  //   Post.create(req.body).then(post => res.json(post));
+  Post.create(req.body).then(post => {
+    User.find({ _id: post.userid }).then(user => {
+      user.myPosts.push(post._id);
+      user.save();
+    });
+    res.json(post);
+  });
 });
 
 //findby user using post-author
 router.get("/:name/posts", (req, res) => {
-  Post.find({ userid: req.params.name }).then(Post => res.json(Post));
+  Post.find({ userid: req.params.name }).then(post => res.json(post));
 });
 
 //delete a post
-router.delete("/:name", (req, res) => {
-  User.findOneAndDelete({ name: req.params.name }).then(Post => {
-    res.json(Post);
+// ALDO: fixed and used postID to delete
+router.delete("/:postID", (req, res) => {
+  Post.findOneAndDelete({ _id: req.params.postID }).then(post => {
+    res.json(post);
   });
 });
+
 module.exports = router;
