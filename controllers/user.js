@@ -12,7 +12,7 @@ router.get("/", (req, res) => {
 router.get("/:userID", (req, res) => {
   console.log("Getting user information wwith search critera");
   console.log(req.params.userID);
-  User.find({ userID: req.params.userID }).then(users => res.json(users));
+  User.find({ _id: req.params.userID }).then(users => res.json(users));
 });
 
 // Deleting User
