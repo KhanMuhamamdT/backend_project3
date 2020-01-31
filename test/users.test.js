@@ -47,23 +47,30 @@ describe('POST /api/users', function() {
     })
 })
 
-// describe('DELETE /api/users/testuser', ()  => {
-//     before(function(done) {
-//         api.get('/api/users/testuser')
-//             .set('Accept', 'application/json')
-//             .end(done)
-//     })
-//     before(function(done) {
-//         api.delete('/api/users/testuser')
-//             .set('Accept', 'application/json')
-//             .end(done)
-//     })
-//     it("should delete testuser from the list of users", (done) => {
-//         api.get("/api/users")
-//             .set('Accept', 'application/json')
-//             .end(function(error, response){
-//                 expect(response.body.length).to.equal(1);
-//                 done()
-//             })
-//     })
-// })
+let userID = ''
+
+//still isn't working, i don't think it's logging userid right, and no records are getting deleted.
+describe('DELETE /api/users/testuser', ()  => {
+    before(function(done) {
+        api.get('/api/users/')
+            .set('Accept', 'application/json')
+            .end(function(error, response) {
+                userID = response.body[1]._id
+            })
+            done()
+    })
+    before(function(done) {
+        api.delete(`/api/users/testuser/${userID}`)
+            .set('Accept', 'application/json')
+            .end(done)
+    })
+    it("should delete testuser from the list of users", (done) => {
+        api.get("/api/users")
+            .set('Accept', 'application/json')
+            .end(function(error, response){
+                expect(response.body.length).to.equal(1);
+                done()
+            })
+            done
+    })
+})
